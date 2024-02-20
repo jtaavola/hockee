@@ -18,6 +18,7 @@ defmodule HockeeWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    get "/scores", ScoresController, :scores
   end
 
   # Other scopes may use custom stacks.
