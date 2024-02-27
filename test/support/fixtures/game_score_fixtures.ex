@@ -15,9 +15,9 @@ defmodule Hockee.GameScoreFixtures do
   def game_score_fixture(attrs \\ %{}) do
     %GameScore{
       start_time: ~U[2024-02-25 03:00:00Z],
-      game_status: :finished,
-      game_finish_type: :regulation,
-      game_clock: "00:00",
+      status: :finished,
+      finish_type: :regulation,
+      clock: "00:00",
       period: 3,
       home_team:
         game_team_stats_fixture(%{

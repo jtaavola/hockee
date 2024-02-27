@@ -27,26 +27,26 @@ defmodule Hockee.GameScore do
 
   @enforce_keys [
     :start_time,
-    :game_status,
+    :status,
     :away_team,
     :home_team
   ]
   defstruct [
     :start_time,
-    :game_clock,
+    :clock,
     :period,
-    :game_status,
-    :game_finish_type,
+    :status,
+    :finish_type,
     :away_team,
     :home_team
   ]
 
   @type t() :: %__MODULE__{
           start_time: DateTime.t(),
-          game_clock: String.t() | nil,
+          clock: String.t() | nil,
           period: non_neg_integer() | nil,
-          game_status: :not_started | :in_progress | :finished,
-          game_finish_type: :regulation | :overtime | :shootout | nil,
+          status: :not_started | :in_progress | :finished,
+          finish_type: :regulation | :overtime | :shootout | nil,
           away_team: GameTeamStats.t(),
           home_team: GameTeamStats.t()
         }
