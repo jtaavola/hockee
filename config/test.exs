@@ -10,6 +10,11 @@ config :hockee, HockeeWeb.Endpoint,
 # In test we don't send emails.
 config :hockee, Hockee.Mailer, adapter: Swoosh.Adapters.Test
 
+config :hockee,
+  nhl_client_options: [
+    plug: {Req.Test, Hockee.NHLClient}
+  ]
+
 # Disable swoosh api client as it is only required for production adapters.
 config :swoosh, :api_client, false
 

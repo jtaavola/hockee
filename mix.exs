@@ -56,7 +56,8 @@ defmodule Hockee.MixProject do
       {:dns_cluster, "~> 0.1.1"},
       {:bandit, "~> 1.2"},
       {:tailwind_formatter, "~> 0.4.0", only: [:dev, :test], runtime: false},
-      {:tzdata, "~> 1.1"}
+      {:tzdata, "~> 1.1"},
+      {:req, "~> 0.4.11"}
     ]
   end
 
