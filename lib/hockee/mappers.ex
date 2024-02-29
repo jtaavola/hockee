@@ -46,13 +46,15 @@ defmodule Hockee.Mappers do
             name: away_team["name"]["default"],
             logo: away_team["logo"],
             goals: away_team["score"],
-            sog: away_team["sog"]
+            sog: away_team["sog"],
+            record: away_team["record"]
           },
           home_team: %GameTeamStats{
             name: home_team["name"]["default"],
             logo: home_team["logo"],
             goals: home_team["score"],
-            sog: home_team["sog"]
+            sog: home_team["sog"],
+            record: home_team["record"]
           }
         }
     end

@@ -48,7 +48,13 @@ defmodule HockeeWeb.ScoresHTML do
             <div>
               <%= @game.away_team.name %>
             </div>
-            <div class="text-xs font-medium text-gray-400">SOG: <%= @game.away_team.sog %></div>
+            <div class="text-xs font-medium text-gray-400">
+              <%= if @game.status == :not_started do %>
+                <%= @game.away_team.record %>
+              <% else %>
+                SOG: <%= @game.away_team.sog %>
+              <% end %>
+            </div>
           </div>
         </div>
         <div class="w-1/5 text-center text-white">
@@ -59,7 +65,13 @@ defmodule HockeeWeb.ScoresHTML do
         <div class="flex w-2/5 items-center justify-end">
           <div class="flex flex-col items-end text-end text-white">
             <%= @game.home_team.name %>
-            <div class="text-xs font-medium text-gray-400">SOG: <%= @game.home_team.sog %></div>
+            <div class="text-xs font-medium text-gray-400">
+              <%= if @game.status == :not_started do %>
+                <%= @game.home_team.record %>
+              <% else %>
+                SOG: <%= @game.home_team.sog %>
+              <% end %>
+            </div>
           </div>
           <img class="h-12 w-12" src={@game.home_team.logo} alt={@game.home_team.name <> " Logo"} />
         </div>

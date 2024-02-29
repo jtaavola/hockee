@@ -1,4 +1,5 @@
 defmodule HockeeWeb.ScoresHTMLTest do
+  alias Hockee.GameTeamStats
   alias Hockee.GameScoreFixtures
   use HockeeWeb.ConnCase, async: true
 
@@ -120,5 +121,29 @@ defmodule HockeeWeb.ScoresHTMLTest do
       )
 
     assert rendered =~ "2OT 10:20"
+  end
+
+  test "should show record instead of SOG if game has not started" do
+    rendered =
+      render_to_string(HockeeWeb.ScoresHTML, "game_score", "html",
+        game:
+          GameScoreFixtures.game_score_fixture(%{
+            status: :not_started,
+            away_team: %GameTeamStats{
+              name: "Hurricanes",
+              logo: "fake logo",
+              record: "12-10-1"
+            },
+            home_team: %GameTeamStats{
+              name: "Wild",
+              logo: "fake logo",
+              record: "82-0-0"
+            }
+          })
+      )
+
+    assert rendered =~ "12-10-1"
+    assert rendered =~ "82-0-0"
+    assert not (rendered =~ "SOG")
   end
 end

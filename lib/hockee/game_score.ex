@@ -8,14 +8,16 @@ defmodule Hockee.GameTeamStats do
     :name,
     :goals,
     :sog,
-    :logo
+    :logo,
+    :record
   ]
 
   @type t() :: %__MODULE__{
           name: String.t(),
           goals: non_neg_integer() | nil,
           sog: non_neg_integer() | nil,
-          logo: String.t()
+          logo: String.t(),
+          record: String.t() | nil
         }
 end
 
