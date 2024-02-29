@@ -43,7 +43,7 @@ defmodule HockeeWeb.ScoresHTML do
       </div>
       <div class="flex h-2/3 items-center">
         <div class="flex w-2/5 items-center">
-          <img class="h-12 w-12" src={@game.away_team.logo} alt={@game.away_team.name <> " Logo"} />
+          <img class="h-12 w-12 pr-1" src={@game.away_team.logo} alt={@game.away_team.name <> " Logo"} />
           <div class="flex flex-col text-white">
             <div>
               <%= @game.away_team.name %>
@@ -73,7 +73,7 @@ defmodule HockeeWeb.ScoresHTML do
               <% end %>
             </div>
           </div>
-          <img class="h-12 w-12" src={@game.home_team.logo} alt={@game.home_team.name <> " Logo"} />
+          <img class="h-12 w-12 pl-1" src={@game.home_team.logo} alt={@game.home_team.name <> " Logo"} />
         </div>
       </div>
     </div>
