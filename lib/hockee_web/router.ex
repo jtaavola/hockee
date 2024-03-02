@@ -17,7 +17,7 @@ defmodule HockeeWeb.Router do
   scope "/", HockeeWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    get "/", ScoresController, :scores
     get "/scores", ScoresController, :scores
   end
 
