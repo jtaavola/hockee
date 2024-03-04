@@ -39,6 +39,7 @@ defmodule Hockee.GameScore do
     :period,
     :status,
     :finish_type,
+    :is_intermission,
     :away_team,
     :home_team
   ]

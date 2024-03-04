@@ -1,14 +1,26 @@
 defmodule HockeeWeb.ScoresHTML do
   use HockeeWeb, :html
 
-  defp format_period(period) when period > 3 do
+  defp score_badge_color(status, is_intermission) do
+    case {status, is_intermission} do
+      {:in_progress, true} -> "bg-yellow-300"
+      {:in_progress, _} -> "bg-green-300"
+      _ -> "bg-gray-300"
+    end
+  end
+
+  defp format_period(period, is_intermission) when is_intermission do
+    format_period(period, false) <> " INT"
+  end
+
+  defp format_period(period, _is_intermission) when period > 3 do
     case period do
       4 -> "OT"
       _ -> "#{period - 3}OT"
     end
   end
 
-  defp format_period(period) do
+  defp format_period(period, _is_intermission) do
     case period do
       1 -> "1st"
       2 -> "2nd"
@@ -26,11 +38,11 @@ defmodule HockeeWeb.ScoresHTML do
     <div class="flex w-full max-w-md flex-col rounded-lg border border-zinc-800 px-4 pb-4">
       <div class={[
         "my-2 h-1/3 self-center rounded px-1 text-xs",
-        if(@game.status == :in_progress, do: "bg-green-300", else: "bg-gray-300")
+        score_badge_color(@game.status, @game.is_intermission)
       ]}>
         <%= case {@game.status, @game.finish_type} do %>
           <% {:in_progress, _} -> %>
-            <%= format_period(@game.period) <> " " <> @game.clock %>
+            <%= format_period(@game.period, @game.is_intermission) <> " " <> @game.clock %>
           <% {:finished, :overtime} -> %>
             FINAL/OT
           <% {:finished, :shootout} -> %>

@@ -42,6 +42,7 @@ defmodule Hockee.Mappers do
           period: game_score_map["period"],
           status: status,
           finish_type: finish_type,
+          is_intermission: game_score_map["clock"]["isIntermission"],
           away_team: %GameTeamStats{
             name: away_team["name"]["default"],
             logo: away_team["logo"],
