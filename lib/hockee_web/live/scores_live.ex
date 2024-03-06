@@ -1,5 +1,6 @@
-defmodule HockeeWeb.ScoresHTML do
-  use HockeeWeb, :html
+defmodule HockeeWeb.ScoresLive do
+  alias Hockee.NHLService
+  use HockeeWeb, :live_view
 
   defp score_badge_color(status, is_intermission) do
     case {status, is_intermission} do
@@ -100,7 +101,7 @@ defmodule HockeeWeb.ScoresHTML do
     """
   end
 
-  def scores(assigns) do
+  def render(assigns) do
     ~H"""
     <div>
       <h1 class="text-center text-2xl font-medium text-white">NHL Scores</h1>
@@ -111,5 +112,14 @@ defmodule HockeeWeb.ScoresHTML do
       </div>
     </div>
     """
+  end
+
+  def mount(_params, _session, socket) do
+    games =
+      DateTime.now!("America/Chicago")
+      |> DateTime.to_date()
+      |> NHLService.get_scores()
+
+    {:ok, assign(socket, :games, games)}
   end
 end
